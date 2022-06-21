@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>CountDown Timer</title>
+<script type="text/JavaScript">
+var timerid;	
+function startWatch() {
+	count=parseInt(document.getElementById("time").value);
+	
+	if (count<=0){
+	count=0;
+	}
+	else if(timerid){
+	count--;
+}
+	
+	document.getElementById("time").value=count;
+
+	if(count=0){
+		clearTimeout(timerid);
+		timerid=0;
+		alert("TimeOver!");
+	}
+	else{
+		timerid=setTimeout("startWatch()",1000);
+	}
+}
+
+function stopWatch() {
+	document.getElementById("time").value=0;
+	if (timerid){
+	clearTimeout(timerid);
+	timerid=0;
+	}
+}
+</script>
+</head>
+<body>
+<h1>CountDown Timer</h1>
+TIME : <input type="text" id="time" size="3" value="10"> second
+<br><br>
+<input id="start" type="button" value="START" onclick="startWatch()">
+<input id="reset" type="button" value="RESET" onclick="stopWatch()">
+</body>
+</html>
+
